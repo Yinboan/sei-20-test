@@ -1,0 +1,18 @@
+{
+  "name": "sei-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start":"npm install && node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cosmjs/stargate": "^0.32.1",
+    "@sei-js/core": "^3.1.2"
+  },
+  "type":"module"
+}
