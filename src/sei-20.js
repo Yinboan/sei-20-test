@@ -4,10 +4,9 @@ import {
   getQueryClient,
 } from "@sei-js/core";
 import { calculateFee } from "@cosmjs/stargate";
-import {mnemonicList} from './sercret.js'
+import {mnemonicList} from './secret.js'
 const RPC_URL = "https://sei-rpc.polkachu.com/";
 const REST_URL = "https://sei-api.polkachu.com/";
-const NETWORK = "pacific-1";
 
 const generateWalletFromMnemonic = async (m) => {
   const wallet = await restoreWallet(m, 0);
@@ -28,6 +27,7 @@ async function main(mnemonic,index) {
   // 解析助记词
   const wallet = await generateWalletFromMnemonic(mnemonic);
   const accounts = await wallet.getAccounts();
+  console.log({accounts});
   console.log("连接账户", accounts[0].address);
   const balance = await querySeiBalance(accounts[0].address);
   console.log("账户余额", balance);
@@ -43,7 +43,7 @@ async function main(mnemonic,index) {
   // 链接rpc节点
   const signingCosmWasmClient = await getSigningCosmWasmClient(RPC_URL, wallet);
 
-  for (let i = 0; i < 5000000; i++) {
+  for (let i = 0; i < 10000; i++) {
     try {
       const response = await signingCosmWasmClient.sendTokens(
         accounts[0].address,
@@ -54,7 +54,10 @@ async function main(mnemonic,index) {
       );
       console.log(`账户${index+1} 第${i+1}次mint： ${response.transactionHash}`);
     } catch (error) {
-      console.log(`第${i+1}次mint失败`, error);
+      console.log(`账户${index+1} 第${i+1}次mint失败`, error);
+      await new Promise((res,rej)=>{
+          setTimeout(()=>{res('faild')},1000)
+      })
     }
   }
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"npm install && node src/index.js",
+    "start": "npm install && node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,7 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "@cosmjs/stargate": "^0.32.1",
+    "@injectivelabs/networks": "^1.14.4",
+    "@injectivelabs/sdk-ts": "^1.14.4",
+    "@injectivelabs/utils": "^1.14.4",
     "@sei-js/core": "^3.1.2"
   },
-  "type":"module"
+  "type": "module"
 }
